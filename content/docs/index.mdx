@@ -1,13 +1,100 @@
 ---
-title: Hello World
-description: Your first document
+title: Overview
+description: This section provides an overview of the system and guides you on how to navigate the system.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
+import Link from 'next/link';
+
+# Welcome to the OSC Documentation!
+
+Welcome to the One Stop Centre (OSC) Documentation. Dive into detailed information about the system, architecture, infrastructure, modules, and more. Below, you can find all the crucial information you need to get started.
 
 ## What is Next?
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
+<a href="https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&dark=auto#G1XCR583xwiXVDsWGLS1hx5Pb46mKkqRu5" className="block bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-6 rounded-lg mb-6 transition-all duration-300 shadow-md hover:shadow-lg no-underline">
+  <div className="flex items-center gap-4">
+    <svg className="w-10 h-10 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="5" width="5" height="4" rx="1" /><rect x="9" y="5" width="5" height="4" rx="1" /><rect x="16" y="5" width="5" height="4" rx="1" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 7h2M14 7h2" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.5 10L4.5 14M11.5 10L11.5 14M18.5 10L18.5 14" /><circle cx="5" cy="15" r="1.5" /><circle cx="12" cy="15" r="1.5" /><circle cx="19" cy="15" r="1.5" /></svg>
+    <div>
+      <h3 className="text-xl font-bold mb-2">OSC Flow Diagram</h3>
+      <p className="mb-0">Explore how OSC is built, how it's secured, and dive into our infrastructure, cloud integration, and more!</p>
+    </div>
+  </div>
+</a>
+
+
+### Explore OSC Through These Key Sections
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+  <Link href="/docs/system-architecture" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">1. System Architecture</h4>
+    <p className="text-sm text-cyan-100">Explore the overall system architecture, design patterns, and core components.</p>
+  </Link>
+  <Link href="/docs/modules" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">2. Functional Modules</h4>
+    <p className="text-sm text-cyan-100">Overview of the 13 interconnected functional modules that power OSC.</p>
+  </Link>
+  <Link href="/docs/use-cases" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">3. Use Cases & User Stories</h4>
+    <p className="text-sm text-cyan-100">Real-world scenarios and examples demonstrating OSC in action.</p>
+  </Link>
+  <Link href="/docs/database" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">4. Database Design & Data Flow</h4>
+    <p className="text-sm text-cyan-100">Database architecture, schema design, and data relationships.</p>
+  </Link>
+  <Link href="/docs/api" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">5. API Documentation</h4>
+    <p className="text-sm text-cyan-100">Complete API reference, endpoints, and integration examples.</p>
+  </Link>
+  <Link href="/docs/security" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">6. Security & Compliance</h4>
+    <p className="text-sm text-cyan-100">Security protocols, best practices, and compliance guidelines.</p>
+  </Link>
+  <Link href="/docs/testing" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">7. Testing & Quality Assurance</h4>
+    <p className="text-sm text-cyan-100">Testing strategies, frameworks, and quality assurance practices.</p>
+  </Link>
+  <Link href="/docs/performance" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">8. Performance Monitoring</h4>
+    <p className="text-sm text-cyan-100">Performance optimization, monitoring tools, and metrics.</p>
+  </Link>
+  <Link href="/docs/deployment" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">9. Deployment & Maintenance</h4>
+    <p className="text-sm text-cyan-100">Deployment processes, environments, and maintenance procedures.</p>
+  </Link>
+  <Link href="/docs/user-guide" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">10. User Guide</h4>
+    <p className="text-sm text-cyan-100">Step-by-step tutorials and guides for end users.</p>
+  </Link>
+  <Link href="/docs/glossary" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">11. Glossary & Terms</h4>
+    <p className="text-sm text-cyan-100">Terminology, definitions, and key concepts used throughout OSC.</p>
+  </Link>
+  <Link href="/docs/changelog" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">12. Changelog & Versioning</h4>
+    <p className="text-sm text-cyan-100">Version history, release notes, and change log.</p>
+  </Link>
+  <Link href="/docs/interactive-features" className="bg-gradient-to-br from-slate-900 via-blue-900 to-cyan-900 border border-cyan-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">13. Interactive Features</h4>
+    <p className="text-sm text-indigo-100">Diagrams, code samples, and interactive walkthroughs.</p>
+  </Link>
+  <Link href="/docs/repositories-overview" className="bg-gradient-to-br from-slate-900 via-emerald-900 to-teal-900 border border-teal-700 rounded-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 no-underline text-white hover:text-white block">
+    <h4 className="font-semibold mb-2">📚 Repository Architecture</h4>
+    <p className="text-sm text-teal-100">Explore all 9 OSC repositories with their services, controllers, and APIs.</p>
+  </Link>
+</div>
+
+## Documentation Flow
+
+This documentation is organized to provide a logical learning path:
+
+1. **System Architecture** - Understand the overall design
+2. **Use Cases** - See real-world applications
+3. **Database** - Learn about data structure
+4. **API** - Understand integration points
+5. **Security** - Ensure safe implementation
+6. **Testing** - Verify quality
+7. **Performance** - Optimize operations
+8. **Deployment** - Launch successfully
+9. **User Guide** - Support end users
+10. **Reference Materials** - Glossary and changelog

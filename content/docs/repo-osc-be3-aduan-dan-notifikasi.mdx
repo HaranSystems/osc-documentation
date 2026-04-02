@@ -1,0 +1,138 @@
+---
+title: OSC BE3 - Complaints & Notifications Repository
+description: Complaint handling and notification services for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC BE3 - Aduan dan Notifikasi (censof/osc-be3-aduan-dan-notifikasi)',
+  description: 'Backend service for managing customer complaints, feedback, and system-wide notifications with escalation workflows.',
+  database: 'MongoDB/PostgreSQL - Complaints & Notifications',
+  services: [
+    {
+      name: 'ComplaintService',
+      description: 'Complaint intake, tracking, and resolution'
+    },
+    {
+      name: 'NotificationService',
+      description: 'Email, SMS, and push notifications'
+    },
+    {
+      name: 'EscalationService',
+      description: 'Complaint escalation workflows'
+    },
+    {
+      name: 'FeedbackService',
+      description: 'Customer feedback collection and analysis'
+    }
+  ],
+  controllers: [
+    {
+      name: 'ComplaintController',
+      services: ['ComplaintService', 'EscalationService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/complaints',
+          description: 'Submit new complaint'
+        },
+        {
+          method: 'GET',
+          path: '/complaints',
+          description: 'List complaints'
+        },
+        {
+          method: 'GET',
+          path: '/complaints/:id',
+          description: 'Get complaint details'
+        },
+        {
+          method: 'PUT',
+          path: '/complaints/:id/status',
+          description: 'Update complaint status'
+        },
+        {
+          method: 'POST',
+          path: '/complaints/:id/escalate',
+          description: 'Escalate complaint'
+        }
+      ]
+    },
+    {
+      name: 'NotificationController',
+      services: ['NotificationService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/notifications/send',
+          description: 'Send notification'
+        },
+        {
+          method: 'GET',
+          path: '/notifications/:userId',
+          description: 'Get user notifications'
+        },
+        {
+          method: 'PUT',
+          path: '/notifications/:id/read',
+          description: 'Mark notification as read'
+        }
+      ]
+    },
+    {
+      name: 'FeedbackController',
+      services: ['FeedbackService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/feedback',
+          description: 'Submit feedback'
+        },
+        {
+          method: 'GET',
+          path: '/feedback',
+          description: 'List feedback entries'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-be3-aduan-dan-notifikasi/
+├── src/
+│   ├── services/
+│   │   ├── complaint/
+│   │   ├── notification/
+│   │   ├── escalation/
+│   │   └── feedback/
+│   ├── controllers/
+│   ├── models/
+│   ├── queues/
+│   └── routes/
+├── tests/
+└── README.md
+```
+
+## Database Models
+
+- **Complaint**: Complaint records and tracking
+- **Notification**: Notification history
+- **Escalation**: Escalation workflows
+- **Feedback**: Customer feedback
+
+## Notification Channels
+
+- Email notifications
+- SMS notifications
+- Push notifications
+- In-app notifications
+
+---
+
+*Aduan = Complaint, Notifikasi = Notification in Malay*

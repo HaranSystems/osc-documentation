@@ -1,0 +1,270 @@
+---
+title: Repository Documentation Guide
+description: Guide for customizing and populating repository architecture documentation
+---
+
+# Repository Documentation Guide
+
+This guide explains how to customize and populate the repository architecture documentation with actual data from your GitHub repositories.
+
+## Overview
+
+You now have a complete documentation system with:
+- **10 repository pages** with templates for all 9 OSC repositories
+- **Tabbed interface** showing Services, Controllers, API Endpoints, and Architecture
+- **Centralized overview page** linking to all repositories
+- **Reusable component** (`RepoArchitecture`) for consistent formatting
+
+## Repository Structure
+
+### Pages Created
+
+1. **repositories-overview.mdx** - Main hub with links to all repositories
+2. **repo-k8s-config.mdx** - Infrastructure configuration
+3. **repo-osc-be0-utiliti.mdx** - Shared utilities
+4. **repo-osc-be1-admin-profile.mdx** - User & admin management
+5. **repo-osc-be2-pelesenan.mdx** - Consultations & scheduling
+6. **repo-osc-be3-aduan-dan-notifikasi.mdx** - Complaints & notifications
+7. **repo-osc-be5-enforcement.mdx** - Enforcement & compliance
+8. **repo-osc-fe-admin.mdx** - Admin portal
+9. **repo-osc-fe-customer.mdx** - Customer portal
+10. **repo-osc-mobile.mdx** - Mobile application
+
+### Component Created
+
+**components/repo-architecture.tsx** - Reusable component that displays:
+- Services tab with service descriptions
+- Controllers tab showing service relationships
+- API Endpoints tab with method and path details
+- Architecture tab with visual layer representation
+
+## How to Customize Each Repository Page
+
+### Step 1: Identify Your Services
+
+For each repository, list all services in the `services` array:
+
+```typescript
+services: [
+  {
+    name: 'ServiceName',
+    description: 'What this service does'
+  },
+  // Add more services...
+]
+```
+
+### Step 2: Map Controllers to Services
+
+For each controller, specify which services it uses and what endpoints it exposes:
+
+```typescript
+controllers: [
+  {
+    name: 'ControllerName',
+    services: ['ServiceName1', 'ServiceName2'],
+    endpoints: [
+      {
+        method: 'GET|POST|PUT|DELETE|PATCH',
+        path: '/api/path',
+        description: 'What this endpoint does'
+      },
+      // Add more endpoints...
+    ]
+  },
+  // Add more controllers...
+]
+```
+
+### Step 3: Update Database Information
+
+Set the database field (optional):
+
+```typescript
+database: 'MongoDB / PostgreSQL - Description'
+```
+
+## Example: Populating a Backend Service
+
+Let's say you're populating `repo-osc-be1-admin-profile.mdx`:
+
+```typescript
+export const repoData = {
+  name: 'OSC BE1 - Admin Profile (censof/osc-be1-admin-profile)',
+  description: 'Backend service for managing user profiles...',
+  database: 'PostgreSQL - Users & Profiles Tables',
+  services: [
+    {
+      name: 'UserService',
+      description: 'Handles user creation, authentication, and management'
+    },
+    {
+      name: 'RoleService',
+      description: 'Manages roles and permissions'
+    },
+    {
+      name: 'ProfileService',
+      description: 'Manages user profile data'
+    }
+  ],
+  controllers: [
+    {
+      name: 'UserController',
+      services: ['UserService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/api/v1/users',
+          description: 'Retrieve all users'
+        },
+        {
+          method: 'POST',
+          path: '/api/v1/users',
+          description: 'Create a new user'
+        },
+        // ... more endpoints
+      ]
+    }
+    // ... more controllers
+  ]
+};
+```
+
+## Navigation Structure
+
+The repositories are now accessible through:
+
+1. **Main Documentation Index** - New "Repository Architecture" card
+2. **Repositories Overview Page** - `/docs/repositories-overview`
+3. **Individual Repository Pages** - `/docs/repo-{repository-name}`
+
+## Tips for Success
+
+### For Backend Services
+
+- Include all REST endpoints (GET, POST, PUT, DELETE, PATCH)
+- Map each controller to its services
+- Document database tables/collections
+- Include authentication/authorization requirements
+
+### For Frontend Applications
+
+- Document page/screen components
+- List API calls and their purposes
+- Include state management services
+- Document UI component hierarchy
+
+### For Infrastructure
+
+- Document configuration files
+- Include namespace/environment details
+- List deployments and resources
+- Document network policies
+
+## API Endpoint Documentation
+
+Each endpoint should include:
+
+| Field | Value |
+|-------|-------|
+| **method** | HTTP method (GET, POST, PUT, DELETE, PATCH) |
+| **path** | Full API path (e.g., `/api/v1/users/:id`) |
+| **description** | Brief description of what it does |
+
+## Extending the Documentation
+
+### Adding Query Parameters
+
+Extend the endpoint object:
+
+```typescript
+endpoint: {
+  method: 'GET',
+  path: '/api/users',
+  description: 'Get users with filters',
+  queryParams: [
+    { name: 'role', type: 'string', required: false },
+    { name: 'page', type: 'number', required: false }
+  ]
+}
+```
+
+### Adding Request/Response Bodies
+
+Add to the endpoint structure:
+
+```typescript
+endpoint: {
+  method: 'POST',
+  path: '/api/users',
+  description: 'Create new user',
+  requestBody: {
+    type: 'json',
+    example: { name: 'John', email: 'john@example.com' }
+  }
+}
+```
+
+## Best Practices
+
+1. **Keep descriptions concise** - One sentence per service
+2. **Use consistent naming** - Match your actual code naming
+3. **Group related endpoints** - Organize by resource type
+4. **Update regularly** - Keep documentation in sync with code
+5. **Document dependencies** - Show service relationships clearly
+
+## Tabs Overview
+
+Each repository page has 4 main tabs:
+
+### 📋 Services Tab
+- Lists all business logic layers
+- Shows service responsibilities
+- Organized in a grid layout
+
+### 🎮 Controllers Tab
+- Shows which services each controller uses
+- Lists all endpoints for each controller
+- Color-coded HTTP methods
+
+### 🔌 API Endpoints Tab
+- Complete table of all endpoints
+- Sortable by method, path, controller
+- Quick reference for integration
+
+### 🏗️ Architecture Tab
+- Visual layer representation
+- Shows data flow (Services → Controllers → Database)
+- Helps understand system organization
+
+## Navigation Updates
+
+The main documentation index now includes a link to the repositories, appearing in the grid with other documentation sections.
+
+---
+
+## Quick Reference: Repository Categories
+
+### Backend Services (5)
+- `osc-be0-utiliti` - Shared utilities
+- `osc-be1-admin-profile` - User management
+- `osc-be2-pelesenan` - Consultation services
+- `osc-be3-aduan-dan-notifikasi` - Complaints & notifications
+- `osc-be5-enforcement` - Enforcement & compliance
+
+### Frontend Applications (2)
+- `osc-fe-admin` - Administrator portal
+- `osc-fe-customer` - Customer portal
+
+### Mobile & Infrastructure (2)
+- `osc-mobile` - Mobile app
+- `k8s-config` - Infrastructure
+
+---
+
+**Next Steps:**
+1. Clone or access each repository
+2. Analyze the actual services and controllers
+3. Update the repository MDX files with real data
+4. Test the documentation in your local environment
+5. Deploy with your Next.js application

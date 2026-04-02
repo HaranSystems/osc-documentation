@@ -1,0 +1,145 @@
+---
+title: OSC FE Admin - Administrator Portal Repository
+description: Administrator web interface for OSC platform management
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC FE Admin (censof/osc-fe-admin)',
+  description: 'React/Next.js frontend application providing comprehensive admin dashboard for system management, user administration, monitoring, and analytics.',
+  database: 'N/A (Frontend - connects to backend APIs)',
+  services: [
+    {
+      name: 'UserManagementService',
+      description: 'User account and role management UI'
+    },
+    {
+      name: 'DashboardService',
+      description: 'Analytics and system monitoring dashboard'
+    },
+    {
+      name: 'ReportingService',
+      description: 'Report generation and visualization'
+    },
+    {
+      name: 'AuthService',
+      description: 'Authentication and session management'
+    }
+  ],
+  controllers: [
+    {
+      name: 'AdminDashboardController',
+      services: ['DashboardService', 'ReportingService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/admin/dashboard',
+          description: 'Load admin dashboard'
+        },
+        {
+          method: 'GET',
+          path: '/admin/stats',
+          description: 'Get system statistics'
+        },
+        {
+          method: 'GET',
+          path: '/admin/analytics',
+          description: 'Get analytics data'
+        }
+      ]
+    },
+    {
+      name: 'UserManagementController',
+      services: ['UserManagementService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/admin/users',
+          description: 'List all users'
+        },
+        {
+          method: 'POST',
+          path: '/admin/users',
+          description: 'Create new user'
+        },
+        {
+          method: 'PUT',
+          path: '/admin/users/:id',
+          description: 'Update user'
+        },
+        {
+          method: 'DELETE',
+          path: '/admin/users/:id',
+          description: 'Delete user'
+        }
+      ]
+    },
+    {
+      name: 'ReportController',
+      services: ['ReportingService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/admin/reports',
+          description: 'List available reports'
+        },
+        {
+          method: 'GET',
+          path: '/admin/reports/:id',
+          description: 'Generate report'
+        },
+        {
+          method: 'POST',
+          path: '/admin/reports/export',
+          description: 'Export report'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-fe-admin/
+├── src/
+│   ├── pages/
+│   │   ├── dashboard/
+│   │   ├── users/
+│   │   ├── reports/
+│   │   ├── settings/
+│   │   └── system/
+│   ├── components/
+│   │   ├── admin/
+│   │   └── ui/
+│   ├── services/
+│   ├── hooks/
+│   ├── utils/
+│   └── types/
+├── tests/
+└── README.md
+```
+
+## Key Features
+
+- **User Management**: Create, edit, delete users
+- **Role Assignment**: Manage user roles and permissions
+- **Analytics Dashboard**: System monitoring and statistics
+- **Report Generation**: Create and export reports
+- **Settings Management**: System configuration
+- **Audit Logs**: Track system activities
+
+## Technology Stack
+
+- Next.js / React
+- TypeScript
+- Tailwind CSS
+- Zustand (State Management)
+- React Query
+
+---
+
+*Admin-only application for platform management and oversight*

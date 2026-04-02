@@ -22,10 +22,11 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "typeRoots": ["node_modules/@types", "node_modules/next/types"]
   },
   "include": [
-    "next-env.d.ts",
+    "next-env.d.ts",  // Ensure this file is included first
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

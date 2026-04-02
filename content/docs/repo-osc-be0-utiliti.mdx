@@ -1,0 +1,103 @@
+---
+title: OSC BE0 - Utilities Repository
+description: Shared utilities and common functions for OSC backend services
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC BE0 - Utilities (censof/osc-be0-utiliti)',
+  description: 'Shared utility library providing common functions, helpers, validation logic, and reusable components for all OSC backend services.',
+  database: 'Shared (MongoDB/PostgreSQL)',
+  services: [
+    {
+      name: 'ValidationService',
+      description: 'Input validation and sanitization for all services'
+    },
+    {
+      name: 'AuthenticationService',
+      description: 'Auth token validation and user verification'
+    },
+    {
+      name: 'LoggingService',
+      description: 'Centralized logging and monitoring'
+    },
+    {
+      name: 'CacheService',
+      description: 'Redis-based caching utility'
+    },
+    {
+      name: 'ErrorHandlingService',
+      description: 'Standardized error handling and formatting'
+    }
+  ],
+  controllers: [
+    {
+      name: 'UtilityController',
+      services: ['ValidationService', 'AuthenticationService', 'LoggingService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/validate/email',
+          description: 'Validate email format'
+        },
+        {
+          method: 'POST',
+          path: '/validate/phone',
+          description: 'Validate phone number'
+        },
+        {
+          method: 'POST',
+          path: '/auth/verify-token',
+          description: 'Verify JWT token'
+        },
+        {
+          method: 'GET',
+          path: '/health/status',
+          description: 'System health check'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-be0-utiliti/
+├── src/
+│   ├── services/
+│   │   ├── validation/
+│   │   ├── authentication/
+│   │   ├── logging/
+│   │   ├── cache/
+│   │   └── error-handling/
+│   ├── middleware/
+│   ├── helpers/
+│   └── types/
+├── tests/
+└── README.md
+```
+
+## Key Features
+
+- **Input Validation**: Comprehensive validation utilities
+- **Authentication**: JWT token handling and verification
+- **Logging**: Centralized logging system
+- **Caching**: Redis integration for performance
+- **Error Handling**: Standardized error responses
+- **Type Definitions**: Shared TypeScript types
+
+## Dependencies
+
+- Express.js
+- Mongoose/Sequelize
+- Redis
+- Jest (Testing)
+- Winston (Logging)
+
+---
+
+*This is a shared library used by all other backend services*

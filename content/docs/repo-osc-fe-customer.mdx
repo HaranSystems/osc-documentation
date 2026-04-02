@@ -1,0 +1,141 @@
+---
+title: OSC FE Customer - Customer Portal Repository
+description: Customer web interface for OSC platform
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC FE Customer (censof/osc-fe-customer)',
+  description: 'React/Next.js frontend application for customers to access services, book consultations, track complaints, and manage their profiles.',
+  database: 'N/A (Frontend - connects to backend APIs)',
+  services: [
+    {
+      name: 'ConsultationService',
+      description: 'Consultation booking interface'
+    },
+    {
+      name: 'ComplaintService',
+      description: 'Complaint submission and tracking'
+    },
+    {
+      name: 'ProfileService',
+      description: 'Customer profile management'
+    },
+    {
+      name: 'NotificationService',
+      description: 'Notification display and management'
+    }
+  ],
+  controllers: [
+    {
+      name: 'ConsultationController',
+      services: ['ConsultationService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/consultations/available',
+          description: 'Get available consultation slots'
+        },
+        {
+          method: 'POST',
+          path: '/consultations/book',
+          description: 'Book consultation'
+        },
+        {
+          method: 'GET',
+          path: '/consultations/my-bookings',
+          description: 'Get user bookings'
+        }
+      ]
+    },
+    {
+      name: 'ComplaintController',
+      services: ['ComplaintService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/complaints/submit',
+          description: 'Submit new complaint'
+        },
+        {
+          method: 'GET',
+          path: '/complaints/my-complaints',
+          description: 'Get user complaints'
+        },
+        {
+          method: 'GET',
+          path: '/complaints/:id/status',
+          description: 'Check complaint status'
+        }
+      ]
+    },
+    {
+      name: 'ProfileController',
+      services: ['ProfileService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/profile',
+          description: 'Get user profile'
+        },
+        {
+          method: 'PUT',
+          path: '/profile',
+          description: 'Update profile'
+        },
+        {
+          method: 'POST',
+          path: '/profile/password',
+          description: 'Change password'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-fe-customer/
+├── src/
+│   ├── pages/
+│   │   ├── home/
+│   │   ├── consultations/
+│   │   ├── complaints/
+│   │   ├── profile/
+│   │   └── notifications/
+│   ├── components/
+│   │   ├── dashboard/
+│   │   ├── forms/
+│   │   └── ui/
+│   ├── services/
+│   ├── hooks/
+│   ├── utils/
+│   └── types/
+├── tests/
+└── README.md
+```
+
+## Key Features
+
+- **Service Discovery**: Browse available services
+- **Consultation Booking**: Schedule appointments
+- **Complaint Management**: Submit and track complaints
+- **Profile Management**: Update personal information
+- **Notification Center**: Receive service updates
+- **Service History**: View past consultations
+
+## Technology Stack
+
+- Next.js / React
+- TypeScript
+- Tailwind CSS
+- Redux (State Management)
+- Axios (API Client)
+
+---
+
+*Customer-facing application for accessing OSC services*

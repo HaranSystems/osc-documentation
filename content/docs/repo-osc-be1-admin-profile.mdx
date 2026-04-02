@@ -1,0 +1,136 @@
+---
+title: OSC BE1 - Admin Profile Repository
+description: User profiles and admin management services for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC BE1 - Admin Profile (censof/osc-be1-admin-profile)',
+  description: 'Backend service for managing user profiles, admin accounts, role-based access control, and user management operations.',
+  database: 'MongoDB/PostgreSQL - Users & Profiles',
+  services: [
+    {
+      name: 'UserService',
+      description: 'User creation, retrieval, and management'
+    },
+    {
+      name: 'ProfileService',
+      description: 'User profile data and preferences management'
+    },
+    {
+      name: 'RoleService',
+      description: 'Role and permission management'
+    },
+    {
+      name: 'AdminService',
+      description: 'Admin-specific operations and privileged actions'
+    }
+  ],
+  controllers: [
+    {
+      name: 'UserController',
+      services: ['UserService', 'ProfileService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/users',
+          description: 'List all users'
+        },
+        {
+          method: 'GET',
+          path: '/users/:id',
+          description: 'Get user details'
+        },
+        {
+          method: 'POST',
+          path: '/users',
+          description: 'Create new user'
+        },
+        {
+          method: 'PUT',
+          path: '/users/:id',
+          description: 'Update user information'
+        },
+        {
+          method: 'DELETE',
+          path: '/users/:id',
+          description: 'Delete user account'
+        }
+      ]
+    },
+    {
+      name: 'ProfileController',
+      services: ['ProfileService', 'UserService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/profile/:userId',
+          description: 'Get user profile'
+        },
+        {
+          method: 'PUT',
+          path: '/profile/:userId',
+          description: 'Update user profile'
+        },
+        {
+          method: 'POST',
+          path: '/profile/avatar',
+          description: 'Upload profile avatar'
+        }
+      ]
+    },
+    {
+      name: 'AdminController',
+      services: ['AdminService', 'RoleService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/admin/users',
+          description: 'Get all users (admin)'
+        },
+        {
+          method: 'POST',
+          path: '/admin/roles',
+          description: 'Create new role'
+        },
+        {
+          method: 'PUT',
+          path: '/admin/users/:id/role',
+          description: 'Assign role to user'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-be1-admin-profile/
+├── src/
+│   ├── services/
+│   │   ├── user/
+│   │   ├── profile/
+│   │   ├── role/
+│   │   └── admin/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── routes/
+├── tests/
+└── README.md
+```
+
+## Database Models
+
+- **User**: User account information
+- **Profile**: User profile data
+- **Role**: Role definitions
+- **Permission**: Permission assignments
+
+---
+
+*This service is critical for access control across the OSC platform*

@@ -1,0 +1,86 @@
+---
+title: K8s Config Repository
+description: Infrastructure and Kubernetes configuration management for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'K8s Config (censof/k8s-config)',
+  description: 'Infrastructure as Code (IaC) repository containing Kubernetes manifests, Helm charts, environment configurations, and cluster deployment definitions for the OSC platform.',
+  database: 'N/A (Infrastructure Configuration)',
+  services: [
+    {
+      name: 'ConfigService',
+      description: 'Manages Kubernetes configuration files and Helm values'
+    },
+    {
+      name: 'DeploymentService',
+      description: 'Handles cluster deployments and rollouts'
+    },
+    {
+      name: 'NetworkService',
+      description: 'Network policies and ingress configurations'
+    }
+  ],
+  controllers: [
+    {
+      name: 'KubernetesController',
+      services: ['ConfigService', 'DeploymentService', 'NetworkService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/config/manifests',
+          description: 'Retrieve Kubernetes manifest files'
+        },
+        {
+          method: 'POST',
+          path: '/deploy/cluster',
+          description: 'Deploy configuration to cluster'
+        },
+        {
+          method: 'GET',
+          path: '/network/policies',
+          description: 'Get network policies'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+k8s-config/
+├── manifests/              # Kubernetes manifests
+├── helm/                   # Helm charts
+├── environments/           # Environment configurations
+│   ├── dev/
+│   ├── staging/
+│   └── production/
+└── README.md
+```
+
+## Key Technologies
+
+- **Kubernetes**: Container orchestration
+- **Helm**: Package management for Kubernetes
+- **Docker**: Containerization
+- **GitOps**: Infrastructure as Code practices
+
+## Configuration Management
+
+This repository manages:
+- Pod deployments and scaling
+- Service definitions
+- Persistent volumes
+- Ingress rules
+- Network policies
+- Resource quotas
+- RBAC (Role-Based Access Control)
+
+---
+
+*Click on the tabs above to explore Services, Controllers, API Endpoints, and Architecture*

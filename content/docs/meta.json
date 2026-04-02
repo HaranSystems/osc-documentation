@@ -1,0 +1,31 @@
+{
+  "title": "OSC Documentation",
+  "pages": [
+    "index",
+    "system-architecture",
+    "modules",
+    "use-cases",
+    "database",
+    "api",
+    "security",
+    "testing",
+    "performance",
+    "deployment",
+    "user-guide",
+    "glossary",
+    "changelog",
+    "interactive-features",
+    "repositories-overview",
+    "repository-guide",
+    "repo-k8s-config",
+    "repo-osc-be0-utiliti",
+    "repo-osc-be1-admin-profile",
+    "repo-osc-be2-pelesenan",
+    "repo-osc-be3-aduan-dan-notifikasi",
+    "repo-osc-be5-enforcement",
+    "repo-osc-fe-admin",
+    "repo-osc-fe-customer",
+    "repo-osc-mobile"
+  ]
+}
+

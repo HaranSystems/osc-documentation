@@ -1,0 +1,249 @@
+---
+title: Interactive Features
+description: Learn how to use interactive elements like diagrams, code samples, and walkthroughs in the OSC documentation.
+---
+
+# Interactive Features
+
+This section demonstrates the interactive elements available in the OSC documentation to enhance your understanding of the system.
+
+## Diagrams with Mermaid
+
+Mermaid.js allows you to create various types of diagrams directly in your documentation.
+
+### System Architecture Flow
+
+```mermaid
+graph TB
+    Client["Client Application"]
+    API["API Gateway"]
+    Auth["Authentication Service"]
+    DB["Database"]
+    Cache["Cache Layer"]
+    
+    Client -->|Request| API
+    API -->|Verify| Auth
+    Auth -->|Query| DB
+    API -->|Store/Retrieve| Cache
+    API -->|Response| Client
+```
+
+### User Authentication Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant API
+    participant AuthService
+    participant Database
+    
+    User->>Frontend: Login
+    Frontend->>API: POST /login
+    API->>AuthService: Validate Credentials
+    AuthService->>Database: Check User
+    Database-->>AuthService: User Found
+    AuthService-->>API: Token Generated
+    API-->>Frontend: JWT Token
+    Frontend-->>User: Logged In
+```
+
+### Database Schema
+
+```mermaid
+erDiagram
+    USERS ||--o{ LICENSES : manages
+    USERS {
+        int user_id PK
+        string email
+        string password_hash
+        string role
+        timestamp created_at
+    }
+    
+    LICENSES ||--o{ APPLICATIONS : contains
+    LICENSES {
+        int license_id PK
+        int user_id FK
+        string license_key
+        timestamp expiration_date
+        string status
+    }
+    
+    APPLICATIONS {
+        int app_id PK
+        int license_id FK
+        string app_name
+        string version
+        timestamp installed_at
+    }
+```
+
+## Code Examples
+
+### API Request Example
+
+```javascript
+// Example: Getting user profile
+const response = await fetch('/api/users/profile', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  }
+});
+
+const user = await response.json();
+console.log(user);
+```
+
+### React Component Example
+
+```tsx
+import React, { useState, useEffect } from 'react';
+
+export function UserProfile() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch('/api/users/profile');
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+  return (
+    <div>
+      <h1>{user?.name}</h1>
+      <p>{user?.email}</p>
+    </div>
+  );
+}
+```
+
+### SQL Query Example
+
+```sql
+-- Get active licenses expiring within 30 days
+SELECT 
+  u.email,
+  l.license_key,
+  l.expiration_date,
+  DATEDIFF(day, GETDATE(), l.expiration_date) as days_until_expiry
+FROM users u
+JOIN licenses l ON u.user_id = l.user_id
+WHERE l.status = 'ACTIVE'
+  AND l.expiration_date BETWEEN GETDATE() AND DATEADD(day, 30, GETDATE())
+ORDER BY l.expiration_date ASC;
+```
+
+## Interactive Callouts
+
+:::info
+This is informational content. Use this to provide helpful context and additional information.
+:::
+
+:::warning
+This indicates a warning. Use this for important precautions and potential issues to watch out for.
+:::
+
+:::danger
+This indicates critical information. Use this for breaking changes or critical issues.
+:::
+
+:::tip
+This is a helpful tip. Use this for best practices and recommendations.
+:::
+
+## Process Workflows
+
+### User Registration Workflow
+
+```mermaid
+flowchart TD
+    A["User Visits Sign Up"] --> B["Fills Registration Form"]
+    B --> C["Validates Input"]
+    C -->|Invalid| D["Shows Error Message"]
+    D --> B
+    C -->|Valid| E["Creates User Account"]
+    E --> F["Sends Verification Email"]
+    F --> G["User Clicks Email Link"]
+    G --> H["Account Activated"]
+    H --> I["Redirect to Dashboard"]
+```
+
+### API Error Handling
+
+```mermaid
+flowchart LR
+    A["API Request"] --> B{"Request Valid?"}
+    B -->|No| C["Return 400 Bad Request"]
+    B -->|Yes| D{"Authorized?"}
+    D -->|No| E["Return 401 Unauthorized"]
+    D -->|Yes| F{"Resource Exists?"}
+    F -->|No| G["Return 404 Not Found"]
+    F -->|Yes| H["Process Request"]
+    H --> I["Return 200 OK"]
+```
+
+## Timeline
+
+```mermaid
+timeline
+    title OSC Development Timeline
+    2024-01 : Initial Planning
+    2024-06 : Development Begins
+    2025-01 : Beta Release
+    2025-06 : Performance Optimization
+    2025-12 : Security Audit
+    2026-03 : Production Release
+    2026-06 : Feature Expansion
+```
+
+## Tips for Using Interactive Features
+
+### Best Practices
+
+- **Diagrams**: Use for system architecture, workflows, and data relationships
+- **Code Examples**: Always provide realistic, runnable examples
+- **Callouts**: Use consistently for warnings, tips, and important information
+- **Sequences**: Use for authentication flows, API interactions, and user journeys
+
+### When to Use Each Feature
+
+| Feature | Use Case | Example |
+|---------|----------|---------|
+| Mermaid Diagram | System architecture, flows | API flow, database schema |
+| Code Block | Implementation details | API requests, code snippets |
+| Callout | Important information | Warnings, tips, best practices |
+| Sequence Diagram | Interaction between systems | Authentication flow, API call sequence |
+
+## Embedding External Content (Optional)
+
+You can also embed:
+
+- **YouTube Videos**: For video tutorials
+- **CodePen/CodeSandbox**: For interactive code examples
+- **Google Docs**: For collaborative documentation
+- **External Diagrams**: From draw.io or similar tools
+
+Example:
+- [OSC Flow Diagram](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&dark=auto#G1XCR583xwiXVDsWGLS1hx5Pb46mKkqRu5)
+
+## Next Steps
+
+- Explore other documentation sections
+- Try creating your own diagrams
+- Refer back to code examples
+- Use the glossary for terminology

@@ -1,0 +1,126 @@
+---
+title: OSC BE5 - Enforcement Repository
+description: Enforcement and compliance management services for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC BE5 - Enforcement (censof/osc-be5-enforcement)',
+  description: 'Backend service for managing enforcement actions, compliance monitoring, violations tracking, and regulatory adherence.',
+  database: 'MongoDB/PostgreSQL - Enforcement & Violations',
+  services: [
+    {
+      name: 'EnforcementService',
+      description: 'Enforcement action creation and tracking'
+    },
+    {
+      name: 'ViolationService',
+      description: 'Violation recording and documentation'
+    },
+    {
+      name: 'ComplianceService',
+      description: 'Compliance status monitoring'
+    },
+    {
+      name: 'InspectionService',
+      description: 'Inspection scheduling and reporting'
+    }
+  ],
+  controllers: [
+    {
+      name: 'EnforcementController',
+      services: ['EnforcementService', 'ViolationService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/enforcement/actions',
+          description: 'Create enforcement action'
+        },
+        {
+          method: 'GET',
+          path: '/enforcement/actions',
+          description: 'List enforcement actions'
+        },
+        {
+          method: 'PUT',
+          path: '/enforcement/actions/:id',
+          description: 'Update enforcement action'
+        },
+        {
+          method: 'POST',
+          path: '/enforcement/violations',
+          description: 'Record violation'
+        }
+      ]
+    },
+    {
+      name: 'ComplianceController',
+      services: ['ComplianceService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/compliance/status',
+          description: 'Get compliance status'
+        },
+        {
+          method: 'GET',
+          path: '/compliance/violations/:entityId',
+          description: 'Get violations for entity'
+        }
+      ]
+    },
+    {
+      name: 'InspectionController',
+      services: ['InspectionService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/inspections',
+          description: 'Schedule inspection'
+        },
+        {
+          method: 'GET',
+          path: '/inspections',
+          description: 'List inspections'
+        },
+        {
+          method: 'PUT',
+          path: '/inspections/:id/report',
+          description: 'Submit inspection report'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-be5-enforcement/
+├── src/
+│   ├── services/
+│   │   ├── enforcement/
+│   │   ├── violation/
+│   │   ├── compliance/
+│   │   └── inspection/
+│   ├── controllers/
+│   ├── models/
+│   ├── workflows/
+│   └── routes/
+├── tests/
+└── README.md
+```
+
+## Database Models
+
+- **EnforcementAction**: Enforcement records
+- **Violation**: Violation documentation
+- **Compliance**: Compliance status
+- **Inspection**: Inspection records
+
+---
+
+*Manages regulatory compliance and enforcement activities across the OSC platform*

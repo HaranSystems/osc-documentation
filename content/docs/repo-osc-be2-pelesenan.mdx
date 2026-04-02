@@ -1,0 +1,126 @@
+---
+title: OSC BE2 - Pelesenan Repository
+description: Consultation and scheduling services for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC BE2 - Pelesenan (censof/osc-be2-pelesenan)',
+  description: 'Backend service for managing consultations, appointment scheduling, time slots, and service availability.',
+  database: 'MongoDB/PostgreSQL - Consultations & Schedules',
+  services: [
+    {
+      name: 'ConsultationService',
+      description: 'Consultation bookings and management'
+    },
+    {
+      name: 'ScheduleService',
+      description: 'Appointment scheduling and calendar management'
+    },
+    {
+      name: 'AvailabilityService',
+      description: 'Staff availability and time slot management'
+    },
+    {
+      name: 'NotificationService',
+      description: 'Consultation reminders and notifications'
+    }
+  ],
+  controllers: [
+    {
+      name: 'ConsultationController',
+      services: ['ConsultationService', 'ScheduleService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/consultations',
+          description: 'List all consultations'
+        },
+        {
+          method: 'POST',
+          path: '/consultations',
+          description: 'Book new consultation'
+        },
+        {
+          method: 'PUT',
+          path: '/consultations/:id',
+          description: 'Update consultation'
+        },
+        {
+          method: 'DELETE',
+          path: '/consultations/:id',
+          description: 'Cancel consultation'
+        }
+      ]
+    },
+    {
+      name: 'ScheduleController',
+      services: ['ScheduleService', 'AvailabilityService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/schedule/availability',
+          description: 'Get available time slots'
+        },
+        {
+          method: 'GET',
+          path: '/schedule/:staffId',
+          description: 'Get staff schedule'
+        },
+        {
+          method: 'POST',
+          path: '/schedule/slot',
+          description: 'Create new time slot'
+        }
+      ]
+    },
+    {
+      name: 'AvailabilityController',
+      services: ['AvailabilityService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/availability/:staffId',
+          description: 'Get staff availability'
+        },
+        {
+          method: 'PUT',
+          path: '/availability/:staffId',
+          description: 'Update availability'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-be2-pelesenan/
+├── src/
+│   ├── services/
+│   │   ├── consultation/
+│   │   ├── schedule/
+│   │   ├── availability/
+│   │   └── notification/
+│   ├── controllers/
+│   ├── models/
+│   ├── utils/
+│   └── routes/
+├── tests/
+└── README.md
+```
+
+## Database Models
+
+- **Consultation**: Consultation records
+- **Schedule**: Appointment calendar
+- **TimeSlot**: Available time slots
+- **Staff**: Staff member information
+
+---
+
+*Pelesenan meaning "Consultation" in Malay - handles appointment and consultation services*

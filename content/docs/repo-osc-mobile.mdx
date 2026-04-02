@@ -1,0 +1,137 @@
+---
+title: OSC Mobile App Repository
+description: Cross-platform mobile application for OSC
+---
+
+import { RepoArchitecture } from '@/components/repo-architecture';
+
+export const repoData = {
+  name: 'OSC Mobile (censof/osc-mobile)',
+  description: 'Cross-platform mobile application (iOS & Android) built with React Native, providing on-the-go access to OSC services for customers.',
+  database: 'N/A (Mobile App - connects to backend APIs)',
+  services: [
+    {
+      name: 'ConsultationService',
+      description: 'Mobile consultation booking interface'
+    },
+    {
+      name: 'ComplaintService',
+      description: 'Mobile complaint submission'
+    },
+    {
+      name: 'LocationService',
+      description: 'GPS and location-based services'
+    },
+    {
+      name: 'PushNotificationService',
+      description: 'Push notification handling'
+    }
+  ],
+  controllers: [
+    {
+      name: 'ConsultationController',
+      services: ['ConsultationService'],
+      endpoints: [
+        {
+          method: 'GET',
+          path: '/api/consultations/available',
+          description: 'Get available slots'
+        },
+        {
+          method: 'POST',
+          path: '/api/consultations/book',
+          description: 'Book consultation'
+        },
+        {
+          method: 'GET',
+          path: '/api/consultations/upcoming',
+          description: 'Get upcoming consultations'
+        }
+      ]
+    },
+    {
+      name: 'ComplaintController',
+      services: ['ComplaintService', 'LocationService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/api/complaints/submit',
+          description: 'Submit complaint with location'
+        },
+        {
+          method: 'GET',
+          path: '/api/complaints/history',
+          description: 'Get complaint history'
+        }
+      ]
+    },
+    {
+      name: 'NotificationController',
+      services: ['PushNotificationService'],
+      endpoints: [
+        {
+          method: 'POST',
+          path: '/api/notifications/register',
+          description: 'Register for push notifications'
+        },
+        {
+          method: 'GET',
+          path: '/api/notifications',
+          description: 'Get notifications'
+        }
+      ]
+    }
+  ]
+};
+
+<RepoArchitecture repo={repoData} />
+
+## Repository Structure
+
+```
+osc-mobile/
+├── src/
+│   ├── screens/
+│   │   ├── home/
+│   │   ├── consultations/
+│   │   ├── complaints/
+│   │   ├── profile/
+│   │   └── notifications/
+│   ├── components/
+│   ├── services/
+│   ├── hooks/
+│   ├── navigation/
+│   ├── utils/
+│   └── types/
+├── android/
+├── ios/
+├── tests/
+└── README.md
+```
+
+## Key Features
+
+- **Cross-Platform**: iOS & Android support
+- **Offline Mode**: Local data caching
+- **Push Notifications**: Real-time alerts
+- **Location Services**: GPS-based features
+- **Camera Access**: Document uploads
+- **Biometric Auth**: Fingerprint/Face recognition
+
+## Technology Stack
+
+- React Native
+- TypeScript
+- React Navigation
+- Redux
+- Firebase (Push Notifications)
+- Expo (for development)
+
+## Platform Support
+
+- iOS 12+
+- Android 8+
+
+---
+
+*Mobile-first application for on-the-go service access*
